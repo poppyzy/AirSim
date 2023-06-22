@@ -43,24 +43,25 @@ if [ "$(uname)" == "Darwin" ]; then # osx
     #brew install llvm@8
     brew install llvm
 else #linux
-    sudo apt-get update
+    # sudo apt-get update
     sudo apt-get -y install --no-install-recommends \
         lsb-release \
         rsync \
         software-properties-common \
         wget \
         libvulkan1 \
-        vulkan-utils
+        # vulkan-utils
 
     #install clang and build tools
     VERSION=$(lsb_release -rs | cut -d. -f1)
     # Since Ubuntu 17 clang is part of the core repository
     # See https://packages.ubuntu.com/search?keywords=clang-8
-    if [ "$VERSION" -lt "17" ]; then
-        wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-        sudo apt-get update
-    fi
-    sudo apt-get install -y clang-8 clang++-8 libc++-8-dev libc++abi-8-dev
+    # if [ "$VERSION" -lt "17" ]; then
+    #     wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+    #     sudo apt-get update
+    # fi
+    sudo apt-get install -y clang-11 clang++-11 libc++-11-dev libc++abi-11-dev
+    # sudo apt-get install -y clang-8 clang++-8 libc++-8-dev libc++abi-8-dev
 fi
 
 if ! which cmake; then
